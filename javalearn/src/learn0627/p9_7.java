@@ -6,10 +6,10 @@ public class p9_7 {
 	
 	public static void method() throws IOException {
 		try {
-			throw new IOException("�ļ�δ�ҵ�"); //�׳�һ���쳣ʵ��
+			throw new IOException("文件未找到"); //抛出一个异常实例
 		} catch (IOException e) {
 			// TODO: handle exception
-			System.out.println("�����쳣");
+			System.out.println("捕获到异常");
 			throw e;
 		}
 	}
@@ -20,7 +20,7 @@ public class p9_7 {
 			method();
 		} catch (IOException e) {
 			// TODO: handle exception
-			System.out.println("�ٴβ���" + e);
+			System.out.println("再次捕获" + e);
 		}
 		 
 	}

@@ -10,17 +10,17 @@ public class p9_5 {
 		for (int i = 0; i < 2; i++) {
 			try {
 				if (i == 0) {
-					result = a/b; //����ArithmeticException
+					result = a/b; //产生ArithmeticException
 				}else {
-					letter[5] = 'X'; //����ArrayIndexOutOfBoundsException
+					letter[5] = 'X'; //产生ArrayIndexOutOfBoundsException
 				}
-				//���ﲶ�����쳣
+				//这里捕获多个异常
 			} catch (ArithmeticException | ArrayIndexOutOfBoundsException me) {
 				// TODO: handle exception
-				System.out.println("�����쳣��" + me);
+				System.out.println("捕获到异常：" + me);
 			}
 		}
-		 System.out.println("������ز���֮��.");
+		 System.out.println("处理多重捕获之后.");
 	}
 
 }
