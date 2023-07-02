@@ -4,10 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 public class p12_11 extends JFrame implements ActionListener {
     JButton [][]cells = new JButton[8][8];
     boolean [][]ok= new boolean[8][8];
+    
+    private int flag = 0;//做个皇后记录
+    private int trueNum = 0;//正确记录
+    
     public p12_11(String title){
         super(title);
         setLayout(new GridLayout(8,8,0,0));
@@ -50,6 +55,25 @@ public class p12_11 extends JFrame implements ActionListener {
                     if (ok[i][j]){
                         cells[i][j].setIcon(new ImageIcon("src/learn0630/images/queen.png"));
                         ok[i][j] = false;
+                        
+             
+                        
+                        flag=flag+1;//判断当前放了几个皇后
+//                        System.out.println(flag);
+                        if (flag>=8) {
+//                        	JOptionPane.showMessageDialog(null,"恭喜你成功了！,下次再来！");
+//                        	System.exit(0);
+                        	int a = JOptionPane.showOptionDialog(null,"恭喜你成功了！\n" + "继续猜吗？",
+                                     "是否继续",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+                        	 if (a != 1) {
+                        		 flag=0;
+                        		 trueNum=0;
+                        		 main(null);
+                        		 }
+                        	 if (a == 1) System.exit(0); 
+						}
+                        
+                        
                         for (int r = 0; r < 8; r++) {
                             ok[r][j] = false;
                         }
@@ -68,6 +92,33 @@ public class p12_11 extends JFrame implements ActionListener {
                         for (int r = i, c = j; r < 8 && c >= 0; r++, c--) {
                             ok[r][c] = false;
                         }
+                        
+                        //遍历看看还有几个位置（True）
+                        for (int k = 0; k < 8; k++) {
+ 							for (int l = 0; l < 8; l++) {
+ 								System.out.print(ok[k][l]+" ");
+ 								if (ok[k][l] == true) {
+ 									trueNum+=1;
+ 								}
+ 							}
+ 							System.out.println();
+ 						}
+                         System.out.println("_");
+                         System.out.println(trueNum);
+                         if (trueNum == 0) {
+                        	 int a = JOptionPane.showOptionDialog(null,"傻瓜，你失败了！\n" + "继续猜吗？",
+                                     "是否继续",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+							 if (a != 1) {
+								 flag=0;
+                        		 trueNum=0;
+                        		 main(null);
+                        		 }
+                        	 if (a == 1) System.exit(0);
+						}else {
+							trueNum=0;
+						}
+                         
+                         
                     }else {
                         JOptionPane.showMessageDialog(null,"此处不能放置皇后");
                     }

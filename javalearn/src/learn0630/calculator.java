@@ -109,7 +109,7 @@ public class calculator {
                         s1=1;
                         str0 = "0";
                         flag="/";
-                        s1=s2/s1;
+                        s1=s2/s1;                      
                     } else if (str.equals("=")) {
                         if(flag.equals("+")){
                             s1=s2+s1;
@@ -118,7 +118,18 @@ public class calculator {
                         }else if(flag.equals("*")){
                             s1=s2*s1;
                         }else if(flag.equals("/")){
-                            s1=s2/s1;
+                           
+                            System.out.println(s1);
+                            System.out.println(s2);
+                           if (s1 == 0) {
+                        		s1 = 0;
+                        		s2 = 0;
+                           }else {
+                        	   s1=s2/s1;
+						}
+                          
+                           System.out.println(s1);
+                           
                         }else{
                         }
                         flag=null;
@@ -127,7 +138,13 @@ public class calculator {
                         str0 = str0 + str;
                         s1=Double.parseDouble(str0);
                     }
-                    jTextField.setText(s1+"");
+                    
+                    if (s1 == 0 && s2 == 0 ) {
+                    	jTextField.setText("不能除以0！");
+					}else {
+						jTextField.setText(s1+"");
+					}
+                    
                 }
             });
         }
